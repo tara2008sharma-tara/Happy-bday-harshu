@@ -6,7 +6,8 @@
     <title>A Special Birthday Surprise! ✨</title>
     <style>
         * { box-sizing: border-box; }
-        body {
+        body 
+        {
             font-family: 'Comic Sans MS', 'Chalkboard SE', 'Poppins', sans-serif;
             background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffe5ec 100%);
             text-align: center;
@@ -17,7 +18,8 @@
             align-items: center;
             height: 100vh;
         }
-        .star {
+        .star 
+        {
             position: absolute;
             background-color: #fff;
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
@@ -25,13 +27,15 @@
             animation: floatStar 8s linear infinite;
             z-index: 1;
         }
-        @keyframes floatStar {
+        @keyframes floatStar
+        {
             0% { transform: translateY(105vh) scale(0.5) rotate(0deg); opacity: 0; }
             10% { opacity: 0.7; }
             90% { opacity: 0.7; }
             100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
         }
-        .container {
+        .container 
+        {
             background: rgba(255, 255, 255, 0.95);
             border: 4px dashed #ff85a2;
             padding: 30px 20px;
@@ -45,14 +49,16 @@
             z-index: 10;
             animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        @keyframes popIn {
+        @keyframes popIn 
+        {
             0% { transform: scale(0.7); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
         h1 { color: #ff4d6d; margin-bottom: 10px; font-size: 26px; }
         h2 { color: #ff758f; font-weight: 600; font-size: 20px; }
         p { color: #555555; line-height: 1.6; font-size: 15px; text-align: justify; margin: 10px 0; }
-        button {
+        button 
+        {
             padding: 14px 30px;
             font-size: 18px;
             font-weight: bold;
@@ -65,7 +71,8 @@
         }
         #openBtn, #yesBtn { background-color: #ff4d6d; color: white; }
         #openBtn:hover, #yesBtn:hover { background-color: #ff758f; transform: translateY(-3px); }
-        #noBtn { 
+        #noBtn 
+        { 
             background-color: #f8f9fa; 
             color: #ff758f; 
             border: 2px solid #ffb3c1;
@@ -74,17 +81,20 @@
             z-index: 20;
         }
         .hidden { display: none; }
-        .envelope-icon {
+        .envelope-icon 
+        {
             font-size: 65px;
             animation: bounce 2s infinite;
             display: inline-block;
             margin-bottom: 10px;
         }
-        @keyframes bounce {
+        @keyframes bounce 
+        {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        .balloon {
+        .balloon 
+        {
             width: 65px;
             height: 80px;
             border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
@@ -95,7 +105,8 @@
             z-index: 5;
             box-shadow: inset -8px -8px 0 rgba(0,0,0,0.07);
         }
-        .balloon::after {
+        .balloon::after 
+        {
             content: "";
             position: absolute;
             bottom: -8px;
@@ -105,11 +116,13 @@
             border-right: 5px solid transparent;
             border-bottom: 8px solid rgba(0,0,0,0.1);
         }
-        @keyframes floatBalloon {
+        @keyframes floatBalloon 
+        {
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
         }
-        #lockScreen {
+        #lockScreen 
+        {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             background: linear-gradient(135deg, #2b2d42 0%, #1a1a2e 100%); 
@@ -118,7 +131,8 @@
             justify-content: center; align-items: center;
             z-index: 100;
         }
-        #countdown { 
+        #countdown 
+        { 
             font-size: 42px; 
             color: #ff4d6d; 
             margin: 25px 0; 
@@ -167,9 +181,11 @@
     </div>
 
     <script>
+        // Formatted directly as integers (Year, Month Index 8 = September, Day, Hour, Min, Sec)
         const birthdayDate = new Date(2026, 8, 15, 0, 0, 0).getTime(); 
 
-        const timer = setInterval(() => {
+        const timer = setInterval(function()
+            {
             const now = new Date().getTime();
             const distance = birthdayDate - now;
 
@@ -178,7 +194,7 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("countdown").innerHTML = ${days}d ${hours}h ${minutes}m ${seconds}s;
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 
             if (distance < 0) {
                 clearInterval(timer);
@@ -191,46 +207,53 @@
             spawnStars(); 
         }
 
-        window.addEventListener("keydown", (e) => {
-            if (e.key === "b" || e.key === "B") {
+        window.addEventListener("keydown", function(e) 
+        {
+            if (e.key === "b" || e.key === "B") 
+            {
                 clearInterval(timer);
                 unlockSite();
             }
         });
 
-        function openLetter() {
+        function openLetter() 
+        {
             document.getElementById("letterSection").classList.add("hidden");
             document.getElementById("questionSection").classList.remove("hidden");
             
-            const music = document.getElementById("bgMusic");
+            var music = document.getElementById("bgMusic");
             music.volume = 0.4;
-            music.play().catch(err => console.log("Audio waiting for user click."));
+            music.play().catch(function(err) { console.log("Audio waiting for user click."); });
         }
 
-        function moveNoButton() {
-            const noBtn = document.getElementById("noBtn");
-            const pad = 40;
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - (pad * 2)) + pad;
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - (pad * 2)) + pad;
+        function moveNoButton()
+        {
+            var noBtn = document.getElementById("noBtn");
+            var pad = 40;
+            var x = Math.random() * (window.innerWidth - noBtn.offsetWidth - (pad * 2)) + pad;
+            var y = Math.random() * (window.innerHeight - noBtn.offsetHeight - (pad * 2)) + pad;
             
-            noBtn.style.left = ${x}px;
-            noBtn.style.top = ${y}px;
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
         }
 
-        function sayYes() {
+        function sayYes() 
+        {
             document.getElementById("questionSection").classList.add("hidden");
             document.getElementById("celebrationSection").classList.remove("hidden");
             document.getElementById("noBtn").style.display = "none";
             spawnBalloons();
         }
 
-        function spawnStars() {
-            setInterval(() => {
-                const star = document.createElement("div");
+        function spawnStars() 
+        {
+            setInterval(function() 
+                {
+                var star = document.createElement("div");
                 star.className = "star";
-                const size = Math.random() * 15 + 10;
-                star.style.width = ${size}px;
-                star.style.height = ${size}px;
-                star.style.left = Math.random() * 100 + "vw";
-star.style.animationDuration = (Math.random() * 4 + 6) + "s";document.body.appendChild(star);setTimeout(() => { star.remove(); }, 10000);}, 600);}function spawnBalloons() {const pastelColors = ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'];setInterval(() => {const balloon = document.createElement("div");balloon.className = "balloon";balloon.style.left = Math.random() * 85 + "vw";balloon.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];balloon.style.animationDuration = (Math.random() * 2 + 4) + "s";balloon.addEventListener("click", () => { balloon.remove(); });document.body.appendChild(balloon);setTimeout(() => { balloon.remove(); }, 6000);}, 350);
-}
+                var size = Math.random() * 15 + 10;
+                star.style.width = size + "px";
+                star.style.height = size + "px";
+star.style.left = (Math.random() * 100) + "vw";star.style.animationDuration = (Math.random() * 4 + 6) + "s";document.body.appendChild(star);setTimeout(function() { star.remove(); }, 10000);}, 600);}function spawnBalloons() {var pastelColors = ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'];setInterval(function() {var balloon = document.createElement("div");balloon.className = "balloon";balloon.style.left = (Math.random() * 85) + "vw";balloon.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];balloon.style.animationDuration = (Math.random() * 2 + 4) + "s";balloon.addEventListener("click", function() { balloon.remove(); });document.body.appendChild(balloon);setTimeout(function() { balloon.remove(); }, 6000);}, 350);
+                 }
+        }
