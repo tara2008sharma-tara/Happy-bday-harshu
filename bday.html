@@ -233,4 +233,4 @@
                 star.style.height = ${size}px;
                 star.style.left = Math.random() * 100 + "vw";
 star.style.animationDuration = (Math.random() * 4 + 6) + "s";document.body.appendChild(star);setTimeout(() => { star.remove(); }, 10000);}, 600);}function spawnBalloons() {const pastelColors = ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'];setInterval(() => {const balloon = document.createElement("div");balloon.className = "balloon";balloon.style.left = Math.random() * 85 + "vw";balloon.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];balloon.style.animationDuration = (Math.random() * 2 + 4) + "s";balloon.addEventListener("click", () => { balloon.remove(); });document.body.appendChild(balloon);setTimeout(() => { balloon.remove(); }, 6000);}, 350);
-}
+} 
